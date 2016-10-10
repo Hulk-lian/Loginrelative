@@ -42,7 +42,7 @@ public class LoginRelative_activity extends AppCompatActivity implements ILoginM
         edtPassWord=(EditText)findViewById(R.id.edtPass);
         btnCancel=(Button)findViewById(R.id.btnCancel);
         btnOk=(Button)findViewById(R.id.btnOK);
-        chbRemember=(CheckBox)findViewById(R.id.chbrecordar);
+        chbRemember=(CheckBox)findViewById(R.id.chkRemenber);
 
         //onClick
         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +71,15 @@ public class LoginRelative_activity extends AppCompatActivity implements ILoginM
         edtUser.setText("");
     }
     @Override
-    public void setMessageError(String error) {
-        Toast.makeText(this,error,Toast.LENGTH_LONG).show();
+    public void setMessageError(String error, int idView) {
+        switch (idView){
+            case R.id.edtUser:
+                edtUser.setError(error);
+                break;
+            case R.id.edtPass:
+                edtPassWord.setError(error);
+                break;
+        }
+       // Toast.makeText(this,error,Toast.LENGTH_LONG).show();
     }
 }

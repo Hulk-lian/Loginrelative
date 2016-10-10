@@ -21,8 +21,14 @@ public class LoginPresenter implements ILoginMvp.Presenter{
     public void validateCredentials(String user, String password) {
 
         String res="";
+        int componente=0;
 
-        if (!TextUtils.isEmpty(user) || !TextUtils.isEmpty(password)) {
+        if(!TextUtils.isEmpty(user))
+        {
+            res=((Context)view).getResources().getString(R.string.data_emptyES);
+            componente=R.id.edtUser;
+        }
+        if (!TextUtils.isEmpty(password)) {
 
             if (password.length()>=8){
 
@@ -35,20 +41,24 @@ public class LoginPresenter implements ILoginMvp.Presenter{
                     }
                     else {
                         res=((Context)view).getResources().getString(R.string.password_case);
+                        componente=R.id.edtPass;
                     }
                 }
                 else {
                     res=((Context)view).getResources().getString(R.string.password_digit);
+                    componente=R.id.edtPass;
                 }
             }
             else{
                 res=((Context)view).getResources().getString(R.string.password_length);
+                componente=R.id.edtPass;
             }
         }
         else {
             res=((Context)view).getResources().getString(R.string.data_emptyES);
+            componente=R.id.edtPass;
         }
 
-        view.setMessageError(res);
+        view.setMessageError(res,componente);
     }
 }
